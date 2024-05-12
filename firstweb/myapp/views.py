@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Tracking, AskQa
+from .models import *
 from django.contrib.auth.decorators import login_required
 
 def Home(request):
@@ -46,3 +46,18 @@ def answer(request, askid):
         record.save()
 
     return render(request, 'myapp/answer.html',{'record':record})
+
+def posts(request):
+    posts = Post.objects.all().order_by('id').reverse()[:3]
+    return render(request, 'myapp/blog.html',{'posts':posts})
+
+def postDetail(request, slug):
+    posts = Post.objects.all().order_by('id').reverse()[:3]
+    try:
+        single_post = get_object_or_404(Post, slug=slug)
+    except Post.DoesNotExist:
+        return render(request, 'myapp/home.html')
+    return render(request, 'myapp/blog-detail.html',{
+        'single_post':single_post,
+        'posts':posts,
+    })

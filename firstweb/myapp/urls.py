@@ -8,5 +8,6 @@ urlpatterns = [
     path('ask/', ask, name='ask'),
     path('questions/', questions, name="questions"),
     path('answer/<int:askid>', answer, name='answer'),
-    
+    path('blogs/', posts, name='post'),
+    path('blog/<slug:slug>/', postDetail, name="post-detail"),
 ]
