@@ -1,0 +1,32 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+
+<h2>ตอบคำถามลูกค้า</h2>
+
+<div class="container">
+    <h3>ชื่อผู็ติดต่อ : {{record.name}}</h3>
+    <h3>อีเมล์ : {{record.email}}</h3>
+    <h3>หัวข้อ : {{record.title}}</h3>
+    <h3>รายละเอียด : </h3>
+    <p>{{ record.detail}}</p>
+    <hr>
+    {% if record.detail_answer %}
+        <h3>ตอบแล้ว</h3>
+        <p>{{ record.detail_answer}}</p>
+    {% endif %}
+</div>
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" id="askid" name="askid" value="{{record.id}}">
+        <div class="form-group">
+            <labal for="detail">ตอบคำถาม</label><br><br>
+            <textarea class="form-control" row="40" id="detail_answer" 
+                name="detail_answer"></textarea>
+        </div><br>
+        <button type="submit" clas="btn btn-primary">ตอบคำถาม</button>
+    </form>
+</div>
+
+{% endblock content %}

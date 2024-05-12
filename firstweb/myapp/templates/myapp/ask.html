@@ -1,0 +1,34 @@
+{% extends "myapp/base.html" %}
+{% block content %}
+
+<div class="container">
+<form method="POST">
+    {% csrf_token %}
+    <div>
+      <div class="form-group">
+        <label for="username" class="form-label">ชื่อผู้ติดต่อ</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="ใส่ชื่อผู้ติดต่อ">
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">อีเมล์</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="ใส่อีเมล์ผู้ติดต่อ">
+      </div>
+      <div class="form-group">
+        <label for="title" class="form-label">หัวข้อ</label>
+        <select id="title" name="title" class="form-select">
+          <option>สินค้า</option>
+          <option>เคลมสินค้า</option>
+          <option>สอบถามข้อมูลสินค้า</option>
+          <option>อื่นๆ</option>
+        </select>
+      </div>
+        <div class="form-group">
+            <label for="detail" class="form-label">รายละเอียด</label>
+            <textarea class="form-control" row="20" id="detail" 
+                name="detail">กรอกรายละเอียด</textarea>
+        </div><br>
+        <button type="submit" class="btn btn-primary">ส่งข้อมูล</button>
+    </div>
+  </form>
+</div>
+  {% endblock content %}
