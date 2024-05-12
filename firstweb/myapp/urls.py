@@ -8,4 +8,5 @@ urlpatterns = [
     path('ask/', ask, name='ask'),
     path('questions/', questions, name="questions"),
     path('answer/<int:askid>', answer, name='answer'),
+    
 ]
